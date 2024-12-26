@@ -45,4 +45,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    public function hasPermission($permission)
+    {
+        // ユーザーの権限をチェック（例: rolesテーブルやpermissionsテーブルとのリレーション）
+        return $this->permissions()->where('name', $permission)->exists();
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
 }

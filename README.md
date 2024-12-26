@@ -3,5 +3,6 @@
 ## ローカル環境
 
 ```bash
-docker compose up -d
+docker compose up -d --build
 ```
+
