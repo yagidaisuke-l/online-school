@@ -50,6 +50,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                // 'permission:admin-access', // 指定アカウントでなければ表示できない
             ])
             ->authMiddleware([
                 Authenticate::class,
