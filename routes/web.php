@@ -6,6 +6,17 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeachingMaterialController;
 
 
+/**
+ * 仮ルーティング
+ * 一旦教材のURLを列挙していく
+ * @TODO 後で再考する
+ */
+Route::get('/kyouzai/step1/step1_1', function () {
+    return view('kyouzai.step1.step1_1');
+});
+
+
+
 // @todo テスト用
 // Route::get('/', function () {
 //     return view('welcome');
@@ -35,7 +46,7 @@ Route::prefix('students')->group(function () {
  */
 Route::prefix('teaching_materials')->group(function () {
     Route::get('/', [TeachingMaterialController::class, 'index'])->name('');
-})->middleware(['permission:student-access', 'permission:another-permission']);
+})->middleware(['permission:student-access', 'permission:teacher-access']);
 
 Auth::routes();
 
