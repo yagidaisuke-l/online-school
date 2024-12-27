@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 /**
  * スクール生徒用の画面
+ * 生徒権限でのみ閲覧ができれば良いと考える
  */
 Route::prefix('students')->group(function () {
     /**
@@ -30,7 +31,12 @@ Route::prefix('students')->group(function () {
 
 /**
  * 教材の画面
+ * 権限は生徒と講師のみが閲覧可能としたい
  */
 Route::prefix('teaching_materials')->group(function () {
     Route::get('/', [TeachingMaterialController::class, 'index'])->name('');
-});
+})->middleware(['permission:student-access', 'permission:another-permission']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
